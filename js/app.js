@@ -846,7 +846,11 @@
     });
 
     setInterval(function () {
-      if (currentUser()) render();
+      if (!currentUser()) return;
+      var active = document.activeElement;
+      var tag = active && active.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+      render();
     }, 2500);
   });
 })();

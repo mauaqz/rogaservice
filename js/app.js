@@ -6,13 +6,62 @@
   var COMMISSION_RATE = 0.15;
 
   var CATEGORIES = [
-    { id: "plomeria", name: "Plomería", icon: "🔧" },
-    { id: "electricidad", name: "Electricidad", icon: "💡" },
-    { id: "ninera", name: "Niñera", icon: "🧸" },
-    { id: "enfermeria", name: "Enfermería", icon: "💉" },
-    { id: "limpieza", name: "Limpieza", icon: "🧹" },
-    { id: "jardineria", name: "Jardinería", icon: "🌿" },
-  ];
+  {
+    "id": "jardineria",
+    "name": "Jardinería",
+    "icon": "🌿"
+  },
+  {
+    "id": "plomeria",
+    "name": "Plomería",
+    "icon": "🔧"
+  },
+  {
+    "id": "electricidad",
+    "name": "Electricidad",
+    "icon": "💡"
+  },
+  {
+    "id": "ninera",
+    "name": "Cuidado de niños",
+    "icon": "🧸"
+  },
+  {
+    "id": "carpinteria_pintura",
+    "name": "Carpintería y pintura",
+    "icon": "🎨"
+  },
+  {
+    "id": "mascotas",
+    "name": "Cuidado de mascotas",
+    "icon": "🐾"
+  },
+  {
+    "id": "choferes",
+    "name": "Choferes",
+    "icon": "🚘"
+  },
+  {
+    "id": "docentes",
+    "name": "Docentes suplentes",
+    "icon": "📚"
+  },
+  {
+    "id": "enfermeria",
+    "name": "Enfermería y cuidado geriátrico",
+    "icon": "🩺"
+  },
+  {
+    "id": "limpieza",
+    "name": "Limpieza de hogar",
+    "icon": "🏠"
+  },
+  {
+    "id": "limpieza_empresas",
+    "name": "Limpieza de empresas",
+    "icon": "🏢"
+  }
+];
 
   var state = {
     view: "auth",
@@ -58,7 +107,7 @@
 
   function seedIfNeeded() {
     var d = loadDB();
-    if (d && d.seeded) return d;
+    if (d && d.seeded) { d.categories = CATEGORIES; saveDB(d); return d; }
     d = { seeded: true, categories: CATEGORIES, users: [], requests: [] };
 
     var demoClient = {
@@ -307,7 +356,7 @@
 
     return '<h1 class="page-title">Hola, ' + escapeHtml(firstName(user.fullName)) + " 👋</h1>" +
       '<p class="muted" style="margin-top:-10px;">¿Qué necesitás resolver hoy?</p>' +
-      '<div class="grid-2" style="margin-top:14px;">' + catsHtml + "</div>" + activeHtml;
+      '<section class="service-hero"><small>ROGASERVICE · A TU LADO</small><h2>Tu día, más fácil.</h2><p>Encontrá ayuda para tu hogar, tu familia y tu empresa.</p></section><div class="grid-2" style="margin-top:14px;">' + catsHtml + "</div>" + activeHtml;
   }
 
   function renderClientNewRequest() {

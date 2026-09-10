@@ -270,3 +270,34 @@ h2.section-title { font-size: 15px; margin: 18px 0 8px; color: var(--text-muted)
 .link-btn { background: none; border: none; color: var(--brand-dark); font-weight: 600; cursor: pointer; font-size: 13.5px; padding: 0; }
 
 .footnote { font-size: 11.5px; color: var(--text-muted); text-align: center; margin-top: 16px; line-height: 1.5; }
+
+/* Rogaservice: blanco y azul */
+:root { --brand:#175cdb; --brand-dark:#103e98; --brand-light:#eaf2ff; --bg:#f6f9ff; --radius:20px; --shadow:0 8px 24px rgba(30,74,150,.07); }
+html,body { background:radial-gradient(ellipse at top,#dceaff,#f5f8ff 75%); }
+.phone { box-shadow:0 24px 80px rgba(21,65,136,.15); }
+.screen { min-height:0; padding:22px 18px 100px; }
+.topbar { background:#fff; color:var(--brand-dark); padding:18px; border-bottom:1px solid var(--border); }
+.brand { font-size:20px; letter-spacing:-.6px; }
+.brand-mark { width:36px; height:36px; background:linear-gradient(135deg,#175cdb,#378bfa); border-radius:12px; box-shadow:0 4px 12px #175cdb30; }
+.topbar-actions button { background:var(--brand-light); color:var(--brand-dark); min-height:36px; }
+.topbar-actions button:hover { background:#d8e8ff; }
+h1.page-title { font-size:25px; letter-spacing:-.7px; }
+.service-hero { position:relative; overflow:hidden; background:linear-gradient(125deg,#103e98,#1764dd 65%,#3688f3); color:white; padding:26px 22px; border-radius:24px; margin:18px 0 24px; box-shadow:0 12px 26px #175cdb25; }
+.service-hero:after { content:""; position:absolute; width:150px; height:150px; border:28px solid #ffffff10; border-radius:50%; right:-80px; top:-65px; pointer-events:none; }
+.service-hero small { font-size:10px; font-weight:800; letter-spacing:2px; color:#d4e7ff; }
+.service-hero h2 { font-size:27px; line-height:1.12; letter-spacing:-.7px; margin:12px 0; max-width:260px; }
+.service-hero p { color:#e1edff; font-size:14px; line-height:1.5; margin:0; max-width:280px; }
+.grid-2 { gap:12px; }
+.cat-card { text-align:left; padding:18px 14px; min-height:136px; border-radius:20px; transition:transform .18s,box-shadow .18s; }
+.cat-card:hover { border-color:#a6c5f5; box-shadow:0 10px 24px #175cdb15; transform:translateY(-2px); }
+.cat-icon { display:flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:15px; background:var(--brand-light); font-size:26px; margin-bottom:13px; }
+.cat-name { display:block; font-size:14px; line-height:1.35; color:#173867; overflow-wrap:anywhere; }
+.btn { min-height:48px; border-radius:14px; }
+.btn-primary { background:linear-gradient(110deg,#175cdb,#2675ec); box-shadow:0 6px 14px #175cdb20; }
+.field input,.field textarea,.field select,.chat-input-row input { font-size:16px; min-height:48px; border-radius:13px; }
+.field textarea { min-height:110px; }
+.tabs-switch { border-radius:14px; }
+.tabs-switch button { min-height:46px; }
+.tabbar { box-shadow:0 -8px 26px #17386708; padding-top:12px; }
+:focus-visible { outline:3px solid #5495f0; outline-offset:3px; }
+@media (prefers-reduced-motion:reduce) { * { transition:none!important; } }

@@ -6,73 +6,43 @@
   var COMMISSION_RATE = 0.15;
 
   var CATEGORIES = [
-  {
-    "id": "jardineria",
-    "name": "Jardinería",
-    "icon": "🌿",
-    "group": "Hogar"
-  },
-  {
-    "id": "plomeria",
-    "name": "Plomería",
-    "icon": "🔧",
-    "group": "Hogar"
-  },
-  {
-    "id": "electricidad",
-    "name": "Electricidad",
-    "icon": "💡",
-    "group": "Hogar"
-  },
-  {
-    "id": "ninera",
-    "name": "Cuidado de niños",
-    "icon": "🧸",
-    "group": "Cuidados"
-  },
-  {
-    "id": "carpinteria_pintura",
-    "name": "Carpintería y pintura",
-    "icon": "🎨",
-    "group": "Hogar"
-  },
-  {
-    "id": "mascotas",
-    "name": "Cuidado de mascotas",
-    "icon": "🐾",
-    "group": "Cuidados"
-  },
-  {
-    "id": "choferes",
-    "name": "Choferes",
-    "icon": "🚘",
-    "group": "Movilidad y educación"
-  },
-  {
-    "id": "docentes",
-    "name": "Docentes suplentes",
-    "icon": "📚",
-    "group": "Movilidad y educación"
-  },
-  {
-    "id": "enfermeria",
-    "name": "Enfermería y cuidado geriátrico",
-    "icon": "🩺",
-    "group": "Cuidados"
-  },
-  {
-    "id": "limpieza",
-    "name": "Limpieza de hogar",
-    "icon": "🏠",
-    "group": "Hogar"
-  },
-  {
-    "id": "limpieza_empresas",
-    "name": "Limpieza de empresas",
-    "icon": "🏢",
-    "group": "Hogar"
-  }
-];
+    { id: "jardineria", name: "Jardinería", icon: "🌿", group: "Hogar", price: 180000 },
+    { id: "plomeria", name: "Plomería", icon: "🔧", group: "Hogar", price: 150000 },
+    { id: "electricidad", name: "Electricidad", icon: "💡", group: "Hogar", price: 170000 },
+    { id: "ninera", name: "Cuidado de niños", icon: "🧸", group: "Cuidados", price: 120000 },
+    { id: "carpinteria_pintura", name: "Carpintería y pintura", icon: "🎨", group: "Hogar", price: 220000 },
+    { id: "mascotas", name: "Cuidado de mascotas", icon: "🐾", group: "Cuidados", price: 100000 },
+    { id: "choferes", name: "Choferes", icon: "🚘", group: "Movilidad y educación", price: 200000 },
+    { id: "docentes", name: "Docentes suplentes", icon: "📚", group: "Movilidad y educación", price: 180000 },
+    { id: "enfermeria", name: "Enfermería y cuidado geriátrico", icon: "🩺", group: "Cuidados", price: 250000 },
+    { id: "limpieza", name: "Limpieza de hogar", icon: "🏠", group: "Hogar", price: 160000 },
+    { id: "limpieza_empresas", name: "Limpieza de empresas", icon: "🏢", group: "Hogar", price: 350000 }
+  ];
+
+  var SERVICE_PROVIDERS = [
+    ["jardineria", "Diego Benítez", "Diez años cuidando jardines y patios.", 4.9, 84, "men/11"],
+    ["jardineria", "Lourdes Giménez", "Jardinería, poda y mantenimiento integral.", 4.8, 61, "women/47"],
+    ["plomeria", "Carlos Servín", "Plomería residencial y atención de urgencias.", 4.9, 126, "men/32"],
+    ["plomeria", "Miguel Acosta", "Reparaciones sanitarias y detección de fugas.", 4.7, 89, "men/51"],
+    ["electricidad", "Bruno Ferreira", "Electricista certificado para hogares y oficinas.", 4.9, 103, "men/45"],
+    ["electricidad", "Patricia Sosa", "Instalaciones y reparaciones eléctricas seguras.", 4.8, 76, "women/44"],
+    ["ninera", "Ana Duarte", "Cuidado infantil y primeros auxilios pediátricos.", 4.9, 118, "women/32"],
+    ["ninera", "Sofía Gómez", "Acompañamiento responsable y actividades educativas.", 4.8, 92, "women/65"],
+    ["carpinteria_pintura", "Ramón López", "Carpintería, muebles y terminaciones de pintura.", 4.8, 71, "men/53"],
+    ["carpinteria_pintura", "Marta Vera", "Pintura interior y restauración de muebles.", 4.9, 64, "women/56"],
+    ["mascotas", "Lucía Rojas", "Paseos y cuidado amoroso de perros y gatos.", 4.9, 137, "women/26"],
+    ["mascotas", "Matías Villalba", "Cuidador de mascotas con experiencia veterinaria.", 4.7, 83, "men/22"],
+    ["choferes", "Jorge Caballero", "Traslados puntuales, seguros y profesionales.", 4.9, 152, "men/36"],
+    ["choferes", "Elena Torres", "Chofer profesional para traslados y diligencias.", 4.8, 110, "women/49"],
+    ["docentes", "Laura Martínez", "Docente suplente de nivel inicial y escolar básica.", 4.9, 86, "women/68"],
+    ["docentes", "Andrés Benítez", "Apoyo escolar y suplencias en ciencias y matemática.", 4.8, 73, "men/62"],
+    ["enfermeria", "Elena Duarte", "Enfermera con experiencia en cuidado domiciliario.", 4.9, 121, "women/43"],
+    ["enfermeria", "Rosa Centurión", "Acompañamiento geriátrico con trato humano.", 4.8, 97, "women/52"],
+    ["limpieza", "Rosa Benítez", "Limpieza profunda y mantenimiento del hogar.", 4.9, 143, "women/60"],
+    ["limpieza", "Mónica Ayala", "Orden, limpieza y atención a los detalles.", 4.8, 105, "women/55"],
+    ["limpieza_empresas", "Gustavo Núñez", "Limpieza profesional para oficinas y comercios.", 4.8, 94, "men/54"],
+    ["limpieza_empresas", "Silvia Franco", "Equipos de limpieza para empresas y eventos.", 4.9, 112, "women/58"]
+  ];
 
   var state = {
     view: "auth",
@@ -81,6 +51,7 @@
     registerRole: "client",
     chatDraft: "",
     selectedRating: null,
+    selectedProviderId: null,
   };
 
   // ---------------- storage helpers ----------------
@@ -116,9 +87,32 @@
     sessionStorage.removeItem(SESSION_KEY);
   }
 
+  function ensureServiceProviders(d) {
+    SERVICE_PROVIDERS.forEach(function (data, index) {
+      var category = categoryById(data[0]);
+      var demoEmail = data[1] === "Carlos Servín" ? "plomero@demo.com" :
+        (data[1] === "Ana Duarte" ? "ninera@demo.com" :
+          (data[1] === "Rosa Benítez" ? "limpieza@demo.com" : "profesional" + (index + 1) + "@demo.com"));
+      var provider = d.users.find(function (u) { return u.email === demoEmail; });
+      var values = {
+        role: "professional", fullName: data[1], email: demoEmail, password: "1234",
+        phone: "0981 " + String(110000 + index).slice(0, 3) + " " + String(110000 + index).slice(3),
+        bio: data[2], categories: [data[0]], baseRate: category.price,
+        isAvailable: true, isVerified: true, ratingSum: Math.round(data[3] * data[4]),
+        ratingCount: data[4], avatarUrl: "https://randomuser.me/api/portraits/" + data[5] + ".jpg"
+      };
+      if (provider) {
+        Object.keys(values).forEach(function (key) { provider[key] = values[key]; });
+      } else {
+        values.id = "provider_" + (index + 1);
+        d.users.push(values);
+      }
+    });
+  }
+
   function seedIfNeeded() {
     var d = loadDB();
-    if (d && d.seeded) { d.categories = CATEGORIES; saveDB(d); return d; }
+    if (d && d.seeded) { d.categories = CATEGORIES; ensureServiceProviders(d); saveDB(d); return d; }
     d = { seeded: true, categories: CATEGORIES, users: [], requests: [] };
 
     var demoClient = {
@@ -148,6 +142,7 @@
     };
 
     d.users.push(demoClient, pro1, pro2, pro3);
+    ensureServiceProviders(d);
     saveDB(d);
     return d;
   }
@@ -281,7 +276,7 @@
       '<div class="row" style="margin-top:8px;">' +
       '<span class="muted">' + timeAgo(r.createdAt) + "</span>" +
       (r.priceFinal ? '<span class="price">' + formatGs(r.priceFinal) + "</span>" :
-        (r.priceEstimate ? '<span class="muted">~' + formatGs(r.priceEstimate) + "</span>" : "")) +
+        (r.priceEstimate ? '<span class="price">' + formatGs(r.priceEstimate) + "</span>" : "")) +
       "</div></div>";
   }
 
@@ -328,7 +323,7 @@
       '<div id="proFields" class="' + (role === "professional" ? "" : "hidden") + '">' +
       '<div class="field"><label>Sobre vos (se lo mostramos al cliente)</label><textarea id="regBio" placeholder="Ej: Electricista matriculado, 8 años de experiencia"></textarea></div>' +
       '<div class="field"><label>Servicios que ofrecés</label><div class="checkbox-grid">' + catsHtml + "</div></div>" +
-      '<div class="field"><label>Tarifa base (Gs.)</label><input id="regRate" type="number" placeholder="100000"></div>' +
+      '<p class="pricing-note">Rogaservice define y muestra la tarifa de cada servicio.</p>' +
       "</div>" +
       '<button class="btn btn-primary" onclick="App.register()">Crear cuenta</button>';
   }
@@ -381,13 +376,28 @@
 
   function renderClientNewRequest() {
     var cat = categoryById(state.params.categoryId);
+    var providers = db().users.filter(function (u) {
+      return u.role === "professional" && u.isAvailable && (u.categories || []).indexOf(cat.id) >= 0;
+    }).sort(function (a, b) { return (proRatingAvg(b) || 0) - (proRatingAvg(a) || 0); }).slice(0, 2);
+    var providerHtml = providers.map(function (pro, index) {
+      var avg = proRatingAvg(pro);
+      return '<button type="button" class="provider-card" data-provider-id="' + pro.id + '" onclick="App.selectProvider(this,' + sq(pro.id) + ')">' +
+        '<span class="provider-photo"><span>' + initials(pro.fullName) + '</span><img src="' + escapeHtml(pro.avatarUrl || "") + '" alt="Foto de ' + escapeHtml(pro.fullName) + '" onerror="this.style.display=\'none\'"></span>' +
+        '<span class="provider-info"><span class="provider-top"><strong>' + escapeHtml(pro.fullName) + '</strong>' + (index === 0 ? '<em>Más elegido</em>' : '') + '</span>' +
+        '<span class="provider-rating">★ ' + (avg ? avg.toFixed(1) : "Nuevo") + ' <small>(' + (pro.ratingCount || 0) + ' reseñas)</small></span>' +
+        '<span class="provider-bio">' + escapeHtml(pro.bio || "Profesional disponible") + '</span><span class="verified">✓ Identidad verificada</span></span>' +
+        '<span class="provider-select">✓</span></button>';
+    }).join("");
     return backLink("client-home") +
-      '<h1 class="page-title">' + (cat ? cat.icon + " " + cat.name : "Nueva solicitud") + "</h1>" +
+      '<div class="request-heading"><span class="cat-icon">' + cat.icon + '</span><div><span class="eyebrow">NUEVA SOLICITUD</span><h1>' + cat.name + '</h1></div></div>' +
+      '<div class="fixed-price"><span><small>Tarifa definida por Rogaservice</small><strong>' + formatGs(cat.price) + '</strong></span><span class="price-check">✓ Precio claro</span></div>' +
+      '<div class="form-step"><span>1</span><div><strong>Elegí un profesional</strong><small>Ambos están disponibles para este servicio</small></div></div>' +
+      '<div class="provider-list">' + providerHtml + '</div>' +
+      '<div class="form-step"><span>2</span><div><strong>Contanos dónde y cuándo</strong><small>Completá los datos para enviar tu solicitud</small></div></div>' +
       '<div class="field"><label>Dirección</label><input id="reqAddress" placeholder="Calle, número, barrio"></div>' +
       '<div class="field"><label>¿Qué necesitás?</label><textarea id="reqDescription" placeholder="Contanos el problema con detalle"></textarea></div>' +
       '<div class="field"><label>¿Cuándo?</label><input id="reqSchedule" type="datetime-local"></div>' +
-      '<div class="field"><label>Presupuesto aproximado (Gs., opcional)</label><input id="reqBudget" type="number" placeholder="Ej: 150000"></div>' +
-      '<button class="btn btn-primary" onclick="App.submitNewRequest()">Enviar solicitud</button>';
+      '<button id="submitRequestBtn" class="btn btn-primary" onclick="App.submitNewRequest()" disabled>Confirmar solicitud · ' + formatGs(cat.price) + '</button>';
   }
 
   function renderClientOrders(user) {
@@ -443,7 +453,7 @@
     html += "</div>";
 
     if (r.status === "pending") {
-      html += '<div class="card"><p class="muted">Buscando un profesional disponible para tu categoría. Te avisaremos apenas alguien lo acepte.</p>' +
+      html += '<div class="card"><p class="muted">' + (pro ? 'Tu solicitud fue enviada a <strong>' + escapeHtml(pro.fullName) + '</strong>. Te avisaremos cuando la acepte.' : 'Buscando un profesional disponible para tu categoría. Te avisaremos apenas alguien lo acepte.') + '</p>' +
         '<button class="btn btn-danger" style="margin-top:10px;" onclick="App.cancelRequest(' + sq(r.id) + ')">Cancelar solicitud</button></div>';
     }
 
@@ -479,14 +489,16 @@
       '<div class="row"><div class="row-title">' + (cat ? cat.icon + " " + cat.name : "Servicio") + '</div><span class="muted">' + timeAgo(r.createdAt) + "</span></div>" +
       '<p class="muted" style="margin:6px 0 2px;">📍 ' + escapeHtml(r.addressText) + "</p>" +
       '<p style="margin:4px 0;">' + escapeHtml(r.description) + "</p>" +
-      (r.priceEstimate ? '<p class="muted">Presupuesto sugerido: ' + formatGs(r.priceEstimate) + "</p>" : "") +
+      (r.priceEstimate ? '<p class="service-price-line">Tarifa Rogaservice: <strong>' + formatGs(r.priceEstimate) + "</strong></p>" : "") +
       '<button class="btn btn-primary" style="margin-top:8px;" onclick="App.acceptRequest(' + sq(r.id) + ')">Aceptar solicitud</button></div>';
   }
 
   function renderProAvailable(user) {
     var d = db();
     var myCats = user.categories || [];
-    var pending = d.requests.filter(function (r) { return r.status === "pending" && myCats.indexOf(r.categoryId) >= 0; })
+    var pending = d.requests.filter(function (r) {
+      return r.status === "pending" && (r.professionalId ? r.professionalId === user.id : myCats.indexOf(r.categoryId) >= 0);
+    })
       .sort(function (a, b) { return new Date(b.createdAt) - new Date(a.createdAt); });
 
     var html = '<h1 class="page-title">Solicitudes disponibles</h1>';
@@ -532,8 +544,8 @@
       html += '<button class="btn btn-primary" onclick="App.startJob(' + sq(r.id) + ')">Iniciar servicio</button>';
     } else if (r.status === "in_progress") {
       html += '<div class="card"><h2 class="section-title" style="margin-top:0;">Finalizar servicio</h2>' +
-        '<div class="field"><label>Precio final (Gs.)</label><input id="finalPrice" type="number" placeholder="' + (r.priceEstimate || 150000) + '"></div>' +
-        '<button class="btn btn-primary" onclick="App.finishJob(' + sq(r.id) + ')">Marcar como completado</button></div>';
+        '<div class="summary-line"><span>Tarifa definida por Rogaservice</span><strong>' + formatGs(r.priceEstimate || 0) + '</strong></div>' +
+        '<button class="btn btn-primary" style="margin-top:12px;" onclick="App.finishJob(' + sq(r.id) + ')">Marcar como completado</button></div>';
     } else if (r.status === "completed") {
       html += '<div class="card">' +
         '<div class="summary-line"><span>Precio del servicio</span><span class="price">' + formatGs(r.priceFinal) + "</span></div>" +
@@ -562,7 +574,7 @@
       '<div class="field"><label>Teléfono</label><input id="proPhone" value="' + escapeHtml(user.phone || "") + '"></div>' +
       '<div class="field"><label>Sobre vos</label><textarea id="proBio">' + escapeHtml(user.bio || "") + "</textarea></div>" +
       '<div class="field"><label>Servicios que ofrecés</label><div class="checkbox-grid">' + catsHtml + "</div></div>" +
-      '<div class="field"><label>Tarifa base (Gs.)</label><input id="proRate" type="number" value="' + (user.baseRate || "") + '"></div>' +
+      '<p class="pricing-note">Las tarifas son administradas por Rogaservice.</p>' +
       '<button class="btn btn-primary" onclick="App.saveProProfile()">Guardar cambios</button>' +
       '<button class="btn btn-outline" style="margin-top:10px;" onclick="App.logout()">Cerrar sesión</button>';
   }
@@ -728,7 +740,7 @@
         if (!selectedCats.length) { toast("Elegí al menos un servicio que ofrecés"); return; }
         newUser.bio = (document.getElementById("regBio").value || "").trim();
         newUser.categories = selectedCats;
-        newUser.baseRate = Number(document.getElementById("regRate").value) || 0;
+        newUser.baseRate = 0;
         newUser.isAvailable = true;
         newUser.isVerified = false;
         newUser.ratingSum = 0;
@@ -748,7 +760,16 @@
       render();
     },
     startNewRequest: function (catId) {
+      state.selectedProviderId = null;
       App.navigate("client-new-request", { categoryId: catId });
+    },
+    selectProvider: function (el, providerId) {
+      state.selectedProviderId = providerId;
+      document.querySelectorAll(".provider-card").forEach(function (card) {
+        card.classList.toggle("selected", card === el);
+      });
+      var submit = document.getElementById("submitRequestBtn");
+      if (submit) submit.disabled = false;
     },
     filterServices: function (query) {
       var term = (query || "").trim().toLowerCase();
@@ -770,22 +791,24 @@
       var address = (document.getElementById("reqAddress").value || "").trim();
       var description = (document.getElementById("reqDescription").value || "").trim();
       var schedule = document.getElementById("reqSchedule").value || null;
-      var budget = Number(document.getElementById("reqBudget").value) || null;
+      var cat = categoryById(state.params.categoryId);
+      if (!state.selectedProviderId) { toast("Elegí un profesional para continuar"); return; }
       if (!address || !description) { toast("Completá la dirección y el detalle del servicio"); return; }
 
       var user = currentUser();
       var newReq = {
-        id: uid("req"), clientId: user.id, professionalId: null, categoryId: state.params.categoryId,
+        id: uid("req"), clientId: user.id, professionalId: state.selectedProviderId, categoryId: state.params.categoryId,
         status: "pending", addressText: address, description: description,
-        scheduledAt: schedule, priceEstimate: budget, priceFinal: null,
+        scheduledAt: schedule, priceEstimate: cat.price, priceFinal: null,
         paymentStatus: "unpaid", commissionAmount: null,
         createdAt: nowIso(), updatedAt: nowIso(), messages: [], review: null,
       };
       mutate(function (d) { d.requests.push(newReq); });
       state.view = "client-orders";
       state.params = {};
+      state.selectedProviderId = null;
       render();
-      toast("Solicitud enviada. ¡Buscando un profesional!");
+      toast("Solicitud enviada al profesional seleccionado");
     },
     openClientOrder: function (id) {
       App.navigate("client-order-detail", { orderId: id });
@@ -882,16 +905,9 @@
       });
     },
     finishJob: function (id) {
-      var priceInput = document.getElementById("finalPrice");
-      var price = Number(priceInput.value) || 0;
-      if (!price) {
-        var r0 = db().requests.find(function (x) { return x.id === id; });
-        price = (r0 && r0.priceEstimate) || 0;
-      }
-      if (!price) { toast("Ingresá el precio final del servicio"); return; }
       mutate(function (d) {
         var r = d.requests.find(function (x) { return x.id === id; });
-        if (r) { r.priceFinal = price; r.status = "completed"; r.updatedAt = nowIso(); }
+        if (r) { r.priceFinal = r.priceEstimate || (categoryById(r.categoryId) || {}).price || 0; r.status = "completed"; r.updatedAt = nowIso(); }
       });
       toast("Servicio marcado como completado");
     },
@@ -899,12 +915,11 @@
       var user = currentUser();
       var phone = document.getElementById("proPhone").value || "";
       var bio = document.getElementById("proBio").value || "";
-      var rate = Number(document.getElementById("proRate").value) || 0;
       var cats = Array.prototype.slice.call(document.querySelectorAll(".checkbox-grid .chip-check.selected")).map(function (el) { return el.getAttribute("data-cat"); });
       if (!cats.length) { toast("Elegí al menos un servicio"); return; }
       mutate(function (d) {
         var u = d.users.find(function (x) { return x.id === user.id; });
-        u.phone = phone; u.bio = bio; u.baseRate = rate; u.categories = cats;
+        u.phone = phone; u.bio = bio; u.categories = cats;
       });
       toast("Perfil actualizado");
     },

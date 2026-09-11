@@ -9,57 +9,68 @@
   {
     "id": "jardineria",
     "name": "Jardinería",
-    "icon": "🌿"
+    "icon": "🌿",
+    "group": "Hogar"
   },
   {
     "id": "plomeria",
     "name": "Plomería",
-    "icon": "🔧"
+    "icon": "🔧",
+    "group": "Hogar"
   },
   {
     "id": "electricidad",
     "name": "Electricidad",
-    "icon": "💡"
+    "icon": "💡",
+    "group": "Hogar"
   },
   {
     "id": "ninera",
     "name": "Cuidado de niños",
-    "icon": "🧸"
+    "icon": "🧸",
+    "group": "Cuidados"
   },
   {
     "id": "carpinteria_pintura",
     "name": "Carpintería y pintura",
-    "icon": "🎨"
+    "icon": "🎨",
+    "group": "Hogar"
   },
   {
     "id": "mascotas",
     "name": "Cuidado de mascotas",
-    "icon": "🐾"
+    "icon": "🐾",
+    "group": "Cuidados"
   },
   {
     "id": "choferes",
     "name": "Choferes",
-    "icon": "🚘"
+    "icon": "🚘",
+    "group": "Movilidad y educación"
   },
   {
     "id": "docentes",
     "name": "Docentes suplentes",
-    "icon": "📚"
+    "icon": "📚",
+    "group": "Movilidad y educación"
   },
   {
     "id": "enfermeria",
     "name": "Enfermería y cuidado geriátrico",
-    "icon": "🩺"
+    "icon": "🩺",
+    "group": "Cuidados"
   },
   {
     "id": "limpieza",
     "name": "Limpieza de hogar",
-    "icon": "🏠"
+    "icon": "🏠",
+    "group": "Hogar"
   },
   {
     "id": "limpieza_empresas",
     "name": "Limpieza de empresas",
-    "icon": "🏢"
+    "icon": "🏢",
+    "group": "Hogar"
   }
 ];
 
@@ -277,13 +288,17 @@
   // ---------------- auth screens ----------------
   function renderAuth() {
     var tab = state.authTab;
-    var html = '<h1 class="page-title">Bienvenido a Rogaservice</h1>';
-    html += '<p class="muted" style="margin-top:-8px;margin-bottom:16px;">Profesionales de confianza para tu hogar, a un pedido de distancia.</p>';
+    var html = '<section class="auth-intro"><div class="auth-image" role="img" aria-label="Profesional de confianza llegando a un hogar"></div>' +
+      '<div class="auth-copy"><span class="eyebrow">SERVICIOS CERCA TUYO</span><h1>Soluciones confiables, cuando las necesitás.</h1>' +
+      '<p>Encontrá profesionales verificados para tu hogar, familia o empresa.</p>' +
+      '<div class="trust-row"><span>✓ Perfiles verificados</span><span>★ Calificaciones reales</span></div></div></section>';
+    html += '<div class="auth-panel">';
     html += '<div class="tabs-switch">' +
       '<button class="' + (tab === "login" ? "active" : "") + '" onclick="App.setAuthTab(\'login\')">Iniciar sesión</button>' +
       '<button class="' + (tab === "register" ? "active" : "") + '" onclick="App.setAuthTab(\'register\')">Registrarme</button>' +
       "</div>";
     html += tab === "login" ? formLoginHtml() : formRegisterHtml();
+    html += '</div>';
     html += renderDemoAccounts();
     html += '<p class="footnote">Proyecto educativo. Los datos se guardan solo en este navegador (localStorage), no en un servidor real.</p>';
     return html;
@@ -333,14 +348,18 @@
       }
       return '<button class="btn btn-outline btn-sm" style="margin:4px 4px 0 0;" onclick="App.quickLogin(' + sq(email) + ')">' + escapeHtml(label) + "</button>";
     }).join("");
-    return '<h2 class="section-title">Probar con cuentas demo</h2><div>' + items + "</div>";
+    return '<details class="demo-box"><summary>Probar la aplicación con cuentas demo</summary><div class="demo-list">' + items + "</div></details>";
   }
 
   // ---------------- client screens ----------------
   function renderClientHome(user) {
-    var catsHtml = CATEGORIES.map(function (c) {
-      return '<div class="cat-card" onclick="App.startNewRequest(' + sq(c.id) + ')">' +
-        '<span class="cat-icon">' + c.icon + '</span><span class="cat-name">' + c.name + "</span></div>";
+    var groups = ["Hogar", "Cuidados", "Movilidad y educación"];
+    var catsHtml = groups.map(function (group) {
+      var cards = CATEGORIES.filter(function (c) { return c.group === group; }).map(function (c) {
+        return '<button class="cat-card" data-search="' + escapeHtml(c.name.toLowerCase()) + '" onclick="App.startNewRequest(' + sq(c.id) + ')">' +
+          '<span class="cat-icon">' + c.icon + '</span><span class="cat-name">' + c.name + '</span><span class="cat-arrow">›</span></button>';
+      }).join("");
+      return '<section class="service-group"><div class="section-heading"><h2>' + group + '</h2><span>' + (CATEGORIES.filter(function (c) { return c.group === group; }).length) + ' servicios</span></div><div class="service-grid">' + cards + '</div></section>';
     }).join("");
 
     var d = db();
@@ -354,9 +373,10 @@
       activeHtml += myActive.map(function (r) { return orderCardHtml(r, "client"); }).join("");
     }
 
-    return '<h1 class="page-title">Hola, ' + escapeHtml(firstName(user.fullName)) + " 👋</h1>" +
-      '<p class="muted" style="margin-top:-10px;">¿Qué necesitás resolver hoy?</p>' +
-      '<section class="service-hero"><small>ROGASERVICE · A TU LADO</small><h2>Tu día, más fácil.</h2><p>Encontrá ayuda para tu hogar, tu familia y tu empresa.</p></section><div class="grid-2" style="margin-top:14px;">' + catsHtml + "</div>" + activeHtml;
+    return '<div class="home-heading"><div><span class="eyebrow">HOLA, ' + escapeHtml(firstName(user.fullName).toUpperCase()) + '</span><h1>¿Qué necesitás hoy?</h1></div><span class="profile-mini">' + initials(user.fullName) + '</span></div>' +
+      '<label class="service-search"><span>⌕</span><input type="search" placeholder="Buscar un servicio" aria-label="Buscar un servicio" oninput="App.filterServices(this.value)"></label>' +
+      '<section class="service-hero"><div class="hero-content"><span class="hero-pill">Profesionales verificados</span><h2>Ayuda confiable para cada momento.</h2><p>Pedí un servicio en pocos pasos.</p></div><div class="hero-art" role="img" aria-label="Profesional de servicios para el hogar"></div></section>' +
+      activeHtml + '<div id="servicesList">' + catsHtml + '</div><div id="noServiceResults" class="empty-state hidden"><span class="emoji">⌕</span>No encontramos ese servicio.</div>';
   }
 
   function renderClientNewRequest() {
@@ -729,6 +749,22 @@
     },
     startNewRequest: function (catId) {
       App.navigate("client-new-request", { categoryId: catId });
+    },
+    filterServices: function (query) {
+      var term = (query || "").trim().toLowerCase();
+      var groups = document.querySelectorAll(".service-group");
+      var visibleCount = 0;
+      groups.forEach(function (group) {
+        var groupCount = 0;
+        group.querySelectorAll(".cat-card").forEach(function (card) {
+          var matches = !term || (card.getAttribute("data-search") || "").indexOf(term) >= 0;
+          card.classList.toggle("hidden", !matches);
+          if (matches) { groupCount += 1; visibleCount += 1; }
+        });
+        group.classList.toggle("hidden", groupCount === 0);
+      });
+      var empty = document.getElementById("noServiceResults");
+      if (empty) empty.classList.toggle("hidden", visibleCount > 0);
     },
     submitNewRequest: function () {
       var address = (document.getElementById("reqAddress").value || "").trim();

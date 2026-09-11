@@ -384,7 +384,7 @@
       return '<button type="button" class="provider-card" data-provider-id="' + pro.id + '" onclick="App.selectProvider(this,' + sq(pro.id) + ')">' +
         '<span class="provider-photo"><span>' + initials(pro.fullName) + '</span><img src="' + escapeHtml(pro.avatarUrl || "") + '" alt="Foto de ' + escapeHtml(pro.fullName) + '" onerror="this.style.display=\'none\'"></span>' +
         '<span class="provider-info"><span class="provider-top"><strong>' + escapeHtml(pro.fullName) + '</strong>' + (index === 0 ? '<em>Más elegido</em>' : '') + '</span>' +
-        '<span class="provider-rating">★ ' + (avg ? avg.toFixed(1) : "Nuevo") + ' <small>(' + (pro.ratingCount || 0) + ' reseñas)</small></span>' +
+        '<span class="provider-stats"><span class="provider-rating"><b>★</b> ' + (avg ? avg.toFixed(1) : "Nuevo") + '</span><small>' + (pro.ratingCount || 0) + ' trabajos realizados</small></span>' +
         '<span class="provider-bio">' + escapeHtml(pro.bio || "Profesional disponible") + '</span><span class="verified">✓ Identidad verificada</span></span>' +
         '<span class="provider-select">✓</span></button>';
     }).join("");
